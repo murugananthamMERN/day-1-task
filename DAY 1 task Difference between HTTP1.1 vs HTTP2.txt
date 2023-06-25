@@ -1,0 +1,93 @@
+
+
+
+                             Write a blog on Difference between HTTP1.1 vs HTTP2
+
+
+
+Launching of the HTTP/2 was an attempt to overcome the limitations of HTTP/1.1 and make it a more efficient web protocol. So, the major differences in these two are mainly the additions or upgrades applied in HTTP/2.
+
+
+
+HTTP/1.1 : -
+
+ -->  HTTP protocol was developed in 1989 as the common language that enables client and server machines’ interaction. Process steps are as enlisted:
+
+     1). The client (browser) has to send a request to the server using the method (GET/POST).
+     2). Server responds with the requested resource, for example – image, alongside the status of what it did to the client’s request.
+     3). Keep in mind that this is not a one-time process. Such requests and responses needs to be transferred between both these machines until the client receives all the resources, 
+          essential to load a web page on the end-user’s (your) screen.
+     4). This request-response exchange can be regarded as an IP stack being handled by transfer layer and networking layers before finally reaching to the application layer. 
+
+HTTP/2 : -
+
+     1). HTTP/2 was released at Google as the significant improvement of its predecessor. It was initially modeled after the SPDY protocol and went through significant changes to include features like multiplexing, 
+          header compression, and stream prioritization to minimize page load latency. After its release, Google announced that it would not provide support for SPDY in favor of HTTP/2.
+
+     2). The major feature that differentiates HTTP/2 from HTTP/1.1 is the binary framing layer. Unlike HTTP/1.1, HTTP/2 uses a binary framing layer.
+          This layer encapsulates messages – converted to its binary equivalent – while making sure that its HTTP semantics (method details, header information, etc.) remain untamed. 
+          This feature of HTTP/2 enables gRPC to use lesser resources.
+
+ ***  Most of the time, a client's initial response in return for an HTTP GET request is not the fully-loaded page. Fetching additional resources from the server requires that the client send repeated requests,
+        break or form the TCP connection repeatedly for them.
+
+
+
+HTTP/1.1 :-
+
+     1). HTTP/1.1 addresses this problem by creating a persistent connection between server and client. Until explicitly closed, this connection will remain open.
+          So, the client can use one TCP connection throughout the communication sans interrupting it again and again.
+
+     2). This approach surely ensures good performance, but it also is problematic.
+
+     3). If a request at the queue head cannot retrieve its required resources, it can block all requests behind it. This phenomenon is called head-of-line blocking (HOL blocking).
+          From the above, we can conclude that multiple TCP connections are essential.
+
+HTTP/2 :-
+
+      1). Considering the bottleneck in the previous scenario, the HTTP/2 developers introduced a binary framing layer. This layer partitions requests and responses in tiny data packets and encodes them. 
+           Due to this, multiple requests and responses become able to run parallelly with HTTP/2 and chances of HOL blocking are bleak.
+
+      2). Not only has it solved the HOL blocking problem in HTTP/1.1, but it also concurrent message exchange between the client and the server.  
+           This way, both of them can have more control while the connection management quality is boosted too.
+
+      3). The problems of HTTP/1.1 looks resolved to a great extent here. However, at times, multiple data streams demanding the same resource can hinder HTTP/2’s performance. 
+           To achieve better performance, HTTP/2 has another way. It has the capability of stream prioritization.
+
+      4). When sending streams in parallel, the client can assign weights (1-256) to its stream to prioritize the responses it demands. Here, the higher the weight, the higher the priority. 
+           The serve sets the data retrieval order as per the request’s weight. Programmers can enjoy better control on page rendering process with stream prioritization ability.
+
+
+               ---------------------------------------- *******************************************------------------------------------*********************************-------------------------------------------------
+
+                                                                                          Write a blog about objects and its internal representation in Javascript         
+
+
+
+Title: Understanding Objects and their Internal Representation in JavaScript
+
+
+What are Objects in JavaScript :-
+
+                                                  ***   In JavaScript, an object is a collection of key-value pairs, where each key is a string (or symbol) that uniquely identifies a value. 
+         Objects can hold any type of value, including other objects, arrays, functions, and primitive data types. They provide a way to group related data and functionality together, allowing for modular and reusable code. 
+
+Internal Representation of Objects :-
+                        
+                                                ***  Internally, objects in JavaScript are implemented as dynamic, unordered collections of properties. Each property consists of a name (a string or symbol) and a value associated with that name. 
+                                                       The value can be any JavaScript data type or even another object.
+
+                                               ***  Under the hood, objects use a mechanism called a "hash table" (also known as a "hash map" or "dictionary") for efficient property lookup. 
+             A hash table is a data structure that allows constant-time access to values based on their associated keys. JavaScript engines utilize hash tables to store object properties and quickly retrieve them when needed.
+
+const movie = {
+  name: 'jailer',
+  hero: 'rajinikanth',
+  dierctor:'nelson',
+what is rajinikanth film number:170,
+  
+};
+
+console.log(movie.name); // Output: jailer
+console.log(movie.what is rajinikanth film number); // Output: 170
+
